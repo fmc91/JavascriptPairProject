@@ -49,7 +49,8 @@ function newGame() {
         }
     }
     var gridcells = document.getElementsByClassName("cell");
-    for (var c of gridcells) {
+    for (var c of gridcells)
+    {
         c.innerHTML = "";
     }
 }
@@ -57,30 +58,38 @@ function newGame() {
 
 function clickOnCell(gridCell) {
 
-    if (IsGameOver == true) {
+    if (IsGameOver == true)
+    {
         return;
     }
     var x = gridCell.getAttribute('data-x');
     var y = gridCell.getAttribute('data-y');
     
 
-    if (cells[x][y].hasMine) {
+    if (cells[x][y].hasMine)
+    {
         gridCell.style.backgroundColor = "red";
         document.getElementById("Game-Status").innerHTML = "Game Over";
         IsGameOver = true;
-
     }
-    else {
+    else if (gridCell.style.backgroundColor == "red" || gridCell.style.backgroundColor == "green")
+    {
+        return;
+    }
+    else 
+    {
         gridCell.style.backgroundColor = "green";
         sum += 1;
         gridCell.innerHTML = sum;
-        if (sum == 16 - mineTracker) {
+        if (sum == 16 - mineTracker)
+        {
             document.getElementById("Game-Status").innerHTML = "You Win!";
             IsGameOver = true;
         }
     }
 }
 
-function getGridCell(x, y) {
+function getGridCell(x, y)
+{
     return document.querySelector('[data-x="' + x +'"][data-y="' + y +'"]');
 }
