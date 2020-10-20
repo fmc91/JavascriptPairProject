@@ -1,0 +1,17 @@
+﻿body
+{
+}
+
+.grid-container {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+}
+
+.cell
+{
+    background-color: darkgrey; 
+}
