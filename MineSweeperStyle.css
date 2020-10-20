@@ -8,5 +8,9 @@
 }
 
 .cell {
-    background-color: darkgrey; 
+    background-color: darkgrey;
+    font-size: 36pt;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }

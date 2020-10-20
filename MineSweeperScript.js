@@ -1,7 +1,5 @@
 
-//Set up the game
-var cells;
-newGame();
+
 
 class MineSweeperCell
 {
@@ -14,7 +12,23 @@ class MineSweeperCell
     }
 }
 
+var IsGameOver;
+var sum = 0;
+var mineTracker = 0;
+
+
+//Set up the game
+var cells;
+newGame();
+
+
+
 function newGame() {
+
+    document.getElementById("Game-Status").innerHTML = "";
+    IsGameOver = false;
+    sum = 0;
+    mineTracker = 0;
     cells = new Array(4);
     for (var i = 0; i < cells.length; i++) {
         cells[i] = new Array(4);
@@ -25,6 +39,7 @@ function newGame() {
             var hasMine;
             if (randomNumber < 1 / 4) {
                 hasMine = true;
+                mineTracker += 1;
             }
             else {
                 hasMine = false;
@@ -33,20 +48,36 @@ function newGame() {
             getGridCell(i, j).style.backgroundColor = "darkgrey";
         }
     }
+    var gridcells = document.getElementsByClassName("cell");
+    for (var c of gridcells) {
+        c.innerHTML = "";
+    }
 }
+
 
 function clickOnCell(gridCell) {
 
+    if (IsGameOver == true) {
+        return;
+    }
     var x = gridCell.getAttribute('data-x');
     var y = gridCell.getAttribute('data-y');
+    
 
     if (cells[x][y].hasMine) {
         gridCell.style.backgroundColor = "red";
-        window.alert("Unlucky! Game over!");
-        newGame();
+        document.getElementById("Game-Status").innerHTML = "Game Over";
+        IsGameOver = true;
+
     }
     else {
         gridCell.style.backgroundColor = "green";
+        sum += 1;
+        gridCell.innerHTML = sum;
+        if (sum == 16 - mineTracker) {
+            document.getElementById("Game-Status").innerHTML = "You Win!";
+            IsGameOver = true;
+        }
     }
 }
 
