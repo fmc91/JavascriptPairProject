@@ -51,5 +51,5 @@ function clickOnCell(gridCell) {
 }
 
 function getGridCell(x, y) {
-    return document.querySelector('[data-x ="' + x +'"][data-y ="' + y +'"]');
+    return document.querySelector('[data-x="' + x +'"][data-y="' + y +'"]');
 }
